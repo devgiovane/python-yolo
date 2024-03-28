@@ -1,0 +1,10 @@
+nc: 5
+names:
+  - 'helmet'
+  - 'no-helmet'
+  - 'no-vest'
+  - 'person'
+  - 'vest'
+train: ./train/images
+val: ./valid/images
+test: ./test/images
