@@ -3,8 +3,8 @@ import shutil
 from sklearn.model_selection import train_test_split
 
 PERCENT_TRAIN = 80
-DATASET_PATH = './dataset'
-DESTINATION_PATH = './dataset/stratification'
+DATASET_PATH = './dataset2'
+DESTINATION_PATH = './dataset2/stratification'
 
 dataset = [item for item in os.listdir(DATASET_PATH) if os.path.isdir(os.path.join(DATASET_PATH, item))]
 
@@ -41,14 +41,14 @@ def unify_from_yolov8() -> None:
                     print(label, e)
 
 
-def statify() -> dict:
+def stratify() -> dict:
     images = os.listdir(os.path.join(DESTINATION_PATH, 'images'))
     labels = os.listdir(os.path.join(DESTINATION_PATH, 'labels'))
     images.sort()
     labels.sort()
     print('Stratification: ')
     print(f'total: {len(images)} images {len(labels)} labels')
-    percent = (100 - PERCENT_TRAIN)/100
+    percent = (100 - PERCENT_TRAIN) / 100
     (train_images, valid_images,
      train_labels, valid_labels) = train_test_split(images, labels, test_size=percent, random_state=1)
     (valid_images, test_images,
@@ -67,12 +67,14 @@ def distribute_for_yolov8(result: dict) -> None:
         print(f'{folder}: {len(result.get(f'{folder}_images'))} images {len(result.get(f'{folder}_labels'))} labels')
         for image in result.get(f'{folder}_images'):
             try:
-                shutil.move(os.path.join(DESTINATION_PATH, 'images', image), os.path.join(DATASET_PATH, folder, 'images', image))
+                shutil.move(os.path.join(DESTINATION_PATH, 'images', image),
+                            os.path.join(DATASET_PATH, folder, 'images', image))
             except Exception as e:
                 print(image, e)
         for label in result.get(f'{folder}_labels'):
             try:
-                shutil.move(os.path.join(DESTINATION_PATH, 'labels', label), os.path.join(DATASET_PATH, folder, 'labels', label))
+                shutil.move(os.path.join(DESTINATION_PATH, 'labels', label),
+                            os.path.join(DATASET_PATH, folder, 'labels', label))
             except Exception as e:
                 print(label, e)
 
@@ -80,6 +82,6 @@ def distribute_for_yolov8(result: dict) -> None:
 if __name__ == '__main__':
     before_all()
     unify_from_yolov8()
-    data = statify()
+    data = stratify()
     distribute_for_yolov8(data)
     after_all()
