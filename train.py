@@ -11,6 +11,8 @@ results_n = model_n.train(
     degrees=+180
 )
 
+model_n.export(format='ONNX')
+
 model_s = YOLO('yolov8s.pt')
 results_s = model_s.train(
     data=os.path.abspath('./dataset2/data.yaml'),
@@ -20,3 +22,5 @@ results_s = model_s.train(
     imgsz=640,
     degrees=-180
 )
+
+model_s.export(format='ONNX')
