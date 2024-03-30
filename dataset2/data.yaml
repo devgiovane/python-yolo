@@ -4,6 +4,15 @@ names:
   - 'no-helmet'
   - 'no-vest'
   - 'vest'
+augmentations:
+  - Albumentations:
+      blur_limit: 0.5
+      brightness_contrast:
+        brightness_limit: 0.1
+        contrast_limit: 0.1
+      hue_saturation:
+        hue_shift_limit: 20
+        sat_shift_limit: 50
 train: ./train/images
 val: ./valid/images
 test: ./test/images
