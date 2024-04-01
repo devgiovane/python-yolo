@@ -4,7 +4,7 @@
 
 > My Study for data science and artificial intelligence
 
-### Concepts
+## Concepts
 
 - Artificial Intelligence (AI)
 - Python (3.12)
@@ -12,7 +12,9 @@
 - Stratification Dataset
 - Sklearn
 
-### CLI Commands
+## Train 1
+
+### Commands
 
 **Train:**
 ```bash
@@ -28,3 +30,17 @@ yolo mode=val task=detect model=$(pwd)/runs/detect/train/weights/best.onnx data=
 ```bash
 yolo mode=predict task=detect model=$(pwd)/runs/detect/train/weights/best.onnx source=$(pwd)/dataset/test/images conf=0.5 imgsz=650
 ```
+
+### Results train
+
+Confusion Matrix:
+<img src="runs/detect/train/confusion_matrix.png" alt=""/>
+
+Confusion Matrix Normalized:
+<img src="runs/detect/train/confusion_matrix_normalized.png" alt=""/>
+
+Results:
+<img src="runs/detect/train/results.png" alt=""/>
+
+PR Curve:
+<img src="runs/detect/train/PR_curve.png" alt=""/>
