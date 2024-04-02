@@ -23,7 +23,6 @@ model_s.train(
 )
 model_s.export(format='ONNX')
 
-
 model_b = YOLO('./runs/detect/train/weights/bets.pt')
 model_b.train(
     data=os.path.abspath('./dataset2/data.yaml'),
