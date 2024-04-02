@@ -1,4 +1,6 @@
+Train 1
 yolo mode=train task=detect model=yolov8n.pt data=$(pwd)/dataset/data.yaml epochs=150 cache=ram batch=-1 imgsz=640 degrees=+180
+-----
 
 150 epochs completed in 1.101 hours.
 Optimizer stripped from runs/detect/train/weights/last.pt, 6.3MB
@@ -16,3 +18,44 @@ Model summary (fused): 168 layers, 3006623 parameters, 0 gradients, 8.1 GFLOPs
                   vest        121        136      0.733      0.919      0.894      0.524
 Speed: 0.2ms preprocess, 2.3ms inference, 0.0ms loss, 2.1ms postprocess per image
 Results saved to runs/detect/train
+
+Train 2
+yolo mode=train task=detect model=yolov8s.pt data=$(pwd)/dataset2/data.yaml epochs=120 cache=ram batch=-1 imgsz=640 degrees=+180
+-----
+
+120 epochs completed in 0.261 hours.
+Optimizer stripped from runs/detect/train/weights/last.pt, 22.5MB
+Optimizer stripped from runs/detect/train/weights/best.pt, 22.5MB
+
+Validating runs/detect/train/weights/best.pt...
+Ultralytics YOLOv8.1.42 🚀 Python-3.10.12 torch-2.2.1+cu121 CUDA:0 (Tesla T4, 15102MiB)
+Model summary (fused): 168 layers, 11127132 parameters, 0 gradients, 28.4 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% 2/2 [00:01<00:00,  1.88it/s]
+                   all         94        468      0.854      0.859      0.882      0.608
+                helmet         94        167      0.929      0.933      0.946      0.714
+             no-helmet         94         70       0.87      0.843      0.877      0.641
+               no-vest         94        196      0.877       0.84       0.91      0.556
+                  vest         94         35      0.742      0.822      0.794       0.52
+Speed: 0.2ms preprocess, 4.0ms inference, 0.0ms loss, 1.4ms postprocess per image
+Results saved to runs/detect/train
+
+Train 3
+yolo mode=train task=detect model=$(pwd)/runs/detect/train/weights/bets.pt data=$(pwd)/dataset2/data.yaml epochs=120 cache=ram batch=-1 imgsz=640 degrees=+180
+-----
+
+120 epochs completed in 0.201 hours.
+Optimizer stripped from runs/detect/train/weights/last.pt, 6.3MB
+Optimizer stripped from runs/detect/train/weights/best.pt, 6.3MB
+
+Validating runs/detect/train/weights/best.pt...
+Ultralytics YOLOv8.1.42 🚀 Python-3.10.12 torch-2.1.0+cu121 CUDA:0 (Tesla T4, 15102MiB)
+Model summary (fused): 168 layers, 3006428 parameters, 0 gradients, 8.1 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% 1/1 [00:00<00:00,  1.27it/s]
+                   all         94        468      0.913      0.824      0.898      0.619
+                helmet         94        167      0.905      0.912      0.944      0.731
+             no-helmet         94         70      0.854      0.755      0.829      0.593
+               no-vest         94        196      0.931      0.889       0.93      0.567
+                  vest         94         35      0.963       0.74      0.891      0.586
+Speed: 0.2ms preprocess, 2.4ms inference, 0.0ms loss, 1.2ms postprocess per image
+Results saved to runs/detect/train
+💡 Learn more at https://docs.ultralytics.com/modes/train
